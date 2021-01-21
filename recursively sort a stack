@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+stack<int> s;
+void impl(int x)
+{
+    if(s.size()==0)
+        s.push(x);
+
+    else
+    {
+        if(!s.empty()&&s.top()<x)
+        {
+            int a=s.top();
+            s.pop();
+            impl(x);
+
+            s.push(a);
+        }
+        else{
+            s.push(x);
+        }
+    }
+}
+void sort()
+{
+    if(s.size()>0)
+    {
+        int x = s.top();
+        s.pop();
+        sort();
+        impl(x);
+        }
+}
+int main()
+{
+    s.push(4);
+    s.push(1);
+    s.push(3);
+    s.push(5);
+    s.push(2);
+    sort();
+
+    while(!s.empty())
+    {
+        cout<<s.top()<<" ";
+        s.pop();
+    }
+}
