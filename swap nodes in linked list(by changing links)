@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+struct Node{
+	int data;
+	Node* next;
+	
+	Node(int key)
+	{
+		data=key;
+		next=NULL;
+	}
+};
+///////******base cases not handled just logic********/////////
+void f(Node* &head)
+{
+	Node* ptr1=head;
+	Node* ptr2=head->next->next->next;
+	Node* ptr3=ptr2->next;
+	Node* ptr4=ptr3->next;
+	Node* ptr5=ptr1->next;
+	Node* ptr6=ptr5->next;
+	
+	ptr1->next=ptr3;
+	ptr2->next=ptr5;
+	ptr3->next=ptr6;
+	ptr5->next=ptr4;
+	
+	while(head!=NULL)
+	{
+		cout<<head->data<<" ";
+		head=head->next;
+	}
+}
+int main() {
+	// your code goes here
+	Node* head=new Node(1);
+	head->next=new Node(2);
+	head->next->next=new Node(3);
+	head->next->next->next=new Node(4);
+	head->next->next->next->next=new Node(5);
+	head->next->next->next->next->next=new Node(6);
+	f(head);
+	return 0;
+}
